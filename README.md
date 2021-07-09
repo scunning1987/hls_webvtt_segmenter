@@ -146,3 +146,21 @@ segmented_vtt_00009.vtt
 segmented_vtt_00010.vtt
 ```
 
+Finally, a new master manifest is written, containing the URI of the newly written WebVTT subtitle file. An example is below:
+
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-INDEPENDENT-SEGMENTS
+#EXT-X-STREAM-INF:BANDWIDTH=6523574,AVERAGE-BANDWIDTH=2690724,CODECS="avc1.4d4028,mp4a.40.2",RESOLUTION=1920x1080,FRAME-RATE=29.970,SUBTITLES="subs"
+index_1.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=3082182,AVERAGE-BANDWIDTH=1258595,CODECS="avc1.4d401f,mp4a.40.2",RESOLUTION=1280x720,FRAME-RATE=29.970,SUBTITLES="subs"
+index_2.m3u8
+#EXT-X-STREAM-INF:BANDWIDTH=1450174,AVERAGE-BANDWIDTH=543970,CODECS="avc1.77.30,mp4a.40.2",RESOLUTION=640x360,FRAME-RATE=29.970,SUBTITLES="subs"
+index_3.m3u8
+#EXT-X-MEDIA:TYPE=SUBTITLES,GROUP-ID="subs",NAME="English",DEFAULT=YES,AUTOSELECT=YES,FORCED=NO,LANGUAGE="eng",URI="segmented_vtt.m3u8"
+```
+
+The name of the new master manifest file contains a `-new` suffix, for example:
+Original : index.m3u8
+New : index-new.m3u8
