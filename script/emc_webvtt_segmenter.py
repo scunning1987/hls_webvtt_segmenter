@@ -64,8 +64,8 @@ def lambda_handler(event, context):
 
     ## Challenge to check if subtitle m3u8 is referenced in the master manifest, if not, exit 
     if vtt_index_relative_url == "":
-        LOGGER.error("Unable to find webvtt manifest location specified in master manifest, here's the manifest : %s " % (master_manifest_request.text))
-        raise Exception("ERROR : Unable to find webvtt manifest location specified in master manifest, here's the manifest : %s " % (master_manifest_request.text))
+        LOGGER.error("Unable to find webvtt manifest location specified in master manifest, here's the manifest : %s " % (master_manifest_text))
+        raise Exception("ERROR : Unable to find webvtt manifest location specified in master manifest, here's the manifest : %s " % (master_manifest_text))
     
     # combine manifest base path and relative webvtt uri to create the s3 object url
     vtt_manifest_key =  "%s/%s" % (master_key_path.rsplit("/",vtt_index_relative_slashes)[0],vtt_index_relative_url)
