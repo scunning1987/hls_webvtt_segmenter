@@ -88,7 +88,6 @@ Add your AWS Lambda function as a target of the event, give the event trigger a 
 ## How To Use
 The script will now run whenever a MediaConvert job completes and meets the event pattern specified in our CloudWatch event rule.
 
-The 
 ```
 #EXTM3U
 #EXT-X-VERSION:3
