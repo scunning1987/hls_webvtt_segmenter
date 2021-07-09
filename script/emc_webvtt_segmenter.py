@@ -25,7 +25,9 @@ def lambda_handler(event, context):
             key = outputgroup['playlistFilePaths'][0].split("/",3)[3]
             master_base_key_path = key.rsplit("/",1)[0]
             master_key_path = key
-    
+
+    LOGGER.info("Master manifest location, bucket: %s , key: %s" % (bucket,master_key_path))
+
     # Do a check to see if HLS output group found, if not, exit the script with Warning but nicely
     if hls_output_not_found:
         LOGGER.warning("No HLS output group found, exiting script")
