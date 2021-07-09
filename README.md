@@ -13,6 +13,7 @@ A script to run as a post transcode Lambda for MediaConvert jobs. The script wil
 * You need an AWS account
 * Your IAM user must be able to set up CloudWatch events, create AWS Lambda functions, create IAM service roles, and full access to an S3 bucket
 * It is assumed that MediaConvert is being used to trigger the script
+* Download, or copy this Lambda [script](script/emc_webvtt_segmenter.py)
 
 ## Deployment Instructions
 To deploy this solution you need to:
@@ -23,21 +24,20 @@ To deploy this solution you need to:
 1. Login to the AWS console
 2. Navigate to the AWS Lambda service console
 3. Select **Create function**
-4. Give the function a name, for example: **dash-manifest-modifier**
+4. Give the function a name, for example: **emc_webvtt_segmenter**
 5. For runtime, select: Python 3.8
 6. Select **Create function**
-7. In the function overview page, select the **Upload** button from the Code Block section
-8. Navigate to the Lambda zip file you downloaded from the prerequisites section
-9. Import the Zip!
-10. Go to the Configuration tab, then General configuration. Select the **Edit** button and change the timeout value to 30 seconds and Save
-11. Next, go to Permissions, under Execution role, select the Role hyperlink for the IAM role that was created with this Lambda function
+7. In the code block section, paste the contents of the script copied/downloaded from above
+8. Import the Zip!
+9. Go to the Configuration tab, then General configuration. Select the **Edit** button and change the timeout value to 30 seconds and Save
+10. Next, go to Permissions, under Execution role, select the Role hyperlink for the IAM role that was created with this Lambda function
 
 *Note; this will open a new tab in your browser to the IAM Console...*
 
 **For this exercise, we'll give the AWS Lambda function full access to your S3 bucket, as the function needs to READ the DASH manifest, as well as WRITE/PUT an updated manifest back to S3. The access can be further restricted with a tighter policy. See the [AWS policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html) to build a more restricted policy**
 
-12. In the role Summary, under the Permissions tab select **Add inline policy**
-13. In the Create policy wizard, select the JSON tab, then paste the below contents into the code block. **Replace "mybucket" with the name of your S3 buckeet**
+11. In the role Summary, under the Permissions tab select **Add inline policy**
+12. In the Create policy wizard, select the JSON tab, then paste the below contents into the code block. **Replace "mybucket" with the name of your S3 buckeet**
 ```
 {
 "Version": "2012-10-17",
@@ -51,8 +51,8 @@ To deploy this solution you need to:
 ]
 }
 ```
-14. Select the **Review policy** button, give the policy a name, ie. FullAccessToS3BucketX, then select the **Create policy** button
-15. You can now close the IAM console tab
+13. Select the **Review policy** button, give the policy a name, ie. FullAccessToS3BucketX, then select the **Create policy** button
+14. You can now close the IAM console tab
 
 ### CloudWatch Event
 1. Login to your AWS account
