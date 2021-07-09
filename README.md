@@ -162,5 +162,7 @@ index_3.m3u8
 ```
 
 The name of the new master manifest file contains a `-new` suffix, for example:
+
 Original : index.m3u8
+
 New : index-new.m3u8
