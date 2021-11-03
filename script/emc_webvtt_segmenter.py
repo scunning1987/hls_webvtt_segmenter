@@ -289,6 +289,7 @@ def lambda_handler(event, context):
             end_time_seconds = (int(end_time_str.split(":")[0]) * 3600) + (int(end_time_str.split(":")[1]) * 60) + float(end_time_str.split(":")[2])
 
             if start_time_seconds >= vtt_segment_start and start_time_seconds <= vtt_segment_end:
+                vtt_segment_start = 0
                 new_start_time_str = str(datetime.timedelta(seconds=start_time_seconds-vtt_segment_start))
                 new_end_time_str = str(datetime.timedelta(seconds=end_time_seconds-vtt_segment_start))
             
