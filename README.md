@@ -28,13 +28,12 @@ To deploy this solution you need to:
 5. For runtime, select: Python 3.8
 6. Select **Create function**
 7. In the code block section, paste the contents of the script copied/downloaded from above
-8. Import the Zip!
-9. Go to the Configuration tab, then General configuration. Select the **Edit** button and change the timeout value to 30 seconds and Save
-10. Next, go to Permissions, under Execution role, select the Role hyperlink for the IAM role that was created with this Lambda function
+8. Go to the Configuration tab, then General configuration. Select the **Edit** button and change the timeout value to 30 seconds and Save
+9. Next, go to Permissions, under Execution role, select the Role hyperlink for the IAM role that was created with this Lambda function
 
 *Note; this will open a new tab in your browser to the IAM Console...*
 
-**For this exercise, we'll give the AWS Lambda function full access to your S3 bucket, as the function needs to READ the DASH manifest, as well as WRITE/PUT an updated manifest back to S3. The access can be further restricted with a tighter policy. See the [AWS policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html) to build a more restricted policy**
+**For this exercise, we'll give the AWS Lambda function full access to your S3 bucket, as the function needs to READ the HLS manifest, as well as WRITE/PUT an updated manifest back to S3. The access can be further restricted with a tighter policy. See the [AWS policy generator](https://awspolicygen.s3.amazonaws.com/policygen.html) to build a more restricted policy**
 
 11. In the role Summary, under the Permissions tab select **Add inline policy**
 12. In the Create policy wizard, select the JSON tab, then paste the below contents into the code block. **Replace "mybucket" with the name of your S3 buckeet**
@@ -86,7 +85,7 @@ To deploy this solution you need to:
 Add your AWS Lambda function as a target of the event, give the event trigger a name and save!
 
 ## How To Use
-The script will now run whenever a MediaConvert job completes and meets the event pattern specified in our CloudWatch event rule.
+The script will now run whenever a MediaConvert job completes and meets the event pattern specified in your CloudWatch event rule.
 
 ```
 #EXTM3U
