@@ -20,6 +20,9 @@ def lambda_handler(event, context):
         LOGGER.error("Event body passed to script is missing key - hls_manifest")
         raise Exception("Event body passed to script is missing key - hls_manifest")
 
+    if "s3" not in event['hls_manifest']:
+        LOGGER.error("You need to pass the s3:// uri for the index manifest of the HLS asset")
+        raise Exception("You need to pass the s3:// uri for the index manifest of the HLS asset")
 
     bucket = event['hls_manifest'].split("/",3)[2]
     key = event['hls_manifest'].split("/",3)[3]
