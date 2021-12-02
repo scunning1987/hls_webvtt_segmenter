@@ -77,7 +77,7 @@ To deploy this solution you need to:
 7. Select **Lambda function** from the target drop-down menu
 8. In the Function field, select your Lambda function from the drop-down menu
 9. Select the **Configure details** button
-10. Give the rule a name, ie. **MediaConvert Completion Event - DASH**, and optionally, a description to further identify the rule
+10. Give the rule a name, ie. **MediaConvert Completion Event - HLS**, and optionally, a description to further identify the rule
 11. Select the **Create rule** button
 
 *Note: From this point on, any MediaConvert job completion events that match the event pattern above will trigger the rule to invoke your Lambda function*
