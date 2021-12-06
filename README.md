@@ -73,16 +73,34 @@ To deploy this solution you need to:
 }
 ```
 
+
 6. Under Targets, select **Add target**
 7. Select **Lambda function** from the target drop-down menu
 8. In the Function field, select your Lambda function from the drop-down menu
 9. Select the **Configure details** button
 10. Give the rule a name, ie. **MediaConvert Completion Event - HLS**, and optionally, a description to further identify the rule
 11. Select the **Create rule** button
+12. Add your AWS Lambda function as a target of the event, give the event trigger a name and save!
 
-*Note: From this point on, any MediaConvert job completion events that match the event pattern above will trigger the rule to invoke your Lambda function*
+NOTE: If you want your CloudWatch event pattern to be more granular (for scenarios where the MediaConvert service is being used for many transcoding projects), you can utilize job tags in MediaConvert and filter them in an event pattern like so:
+```
+{
+"detail-type": ["MediaConvert Job State Change"],
+"source": ["aws.mediaconvert"],
+"detail": {
+"userMetadata": {
+"Workflow": ["HLS_WebVTT_Segment"]
+},
+"status": ["COMPLETE"]
+}
+}
+```
 
-Add your AWS Lambda function as a target of the event, give the event trigger a name and save!
+Your MediaConvert Job will need to be setup to pass a Job metadata tag that will match your event pattern, like the below screen capture:
+
+![](images/mediaconvert-job-tags.png?width=60pc&classes=border,shadow)
+
+From this point on, any MediaConvert job completion events that match the event pattern above will trigger the rule to invoke your Lambda function
 
 ## How To Use
 The script will now run whenever a MediaConvert job completes and meets the event pattern specified in your CloudWatch event rule.
